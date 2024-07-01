@@ -9,6 +9,7 @@
   let faculty;
   let phoneNumber;
   let root;
+  let base64String = '';
 
   let fileName = "No File Selected";
   async function submitForm(event) {
@@ -46,14 +47,19 @@
 
   function fileUpload(event) {
     file = event.target.files[0];
+    if (!file) {
+       return 
+    }
     if (
       file.type.split("/")[0] === "image" ||
       file.type === "application/pdf"
     ) {
-      file = event.target.files[0];
       fileName = file.name;
-      console.log(fileName);
-      console.log(event, file, fileName);
+      const reader = new FileReader();
+      reader.onload = function(e) {
+          base64String = e.target.result;
+      };
+      reader.readAsDataURL(file);
     } else {
       console.log("Invalid File type");
     }
@@ -68,7 +74,7 @@
 </svelte:head>
 
 <div class="item-center flex justify-center">
-  <div class="w-[32rem]">
+  <div class="md:w-sm">
     <form
       enctype="multipart/form-data"
       on:submit={submitForm}
@@ -77,21 +83,18 @@
       <div>
         <label
           for="payment"
-          class="flex h-64 flex-auto cursor-pointer items-center justify-center rounded-2xl border border-dashed border-orange-400 bg-slate-50"
+          class="flex h-64 flex-auto cursor-pointer items-center justify-center rounded-2xl border border-dashed border-orange-400 bg-slate-50 relative"
           on:dragover|preventDefault
-          on:drop|preventDefault={(e) => {
-            root.files = e.dataTransfer.files;
-            fileName = root.files[0].name;
-            console.log(fileName);
-          }}
+          on:drop|preventDefault={(e) => fileUpload(e)}
         >
+        <div class="absolute w-full h-64 opacity-60 rounded-xl" style="background-image: url({base64String}); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
           <input
+            class="absolute top-0 payment cursor-pointer"
             type="file"
             name="file"
             id="payment"
             accept="image/*,.pdf"
             on:change={fileUpload}
-            class="payment cursor-pointer"
             hidden
             bind:this={root}
           />
@@ -100,7 +103,7 @@
           </div>
           Upload Payment Screenshot
         </label>
-        <div><h6>No File Selected</h6></div>
+        <div><h6>{fileName}</h6></div>
       </div>
       <div class="flex flex-row justify-between gap-4">
         <input
@@ -185,16 +188,8 @@
           <option value="MBA">MBA</option>
         </select>
 
-        <!-- <input
-          type="text"
-          name="faculty"
-          id="faculty"
-          placeholder="Faulty"
-          bind:value={faculty}
-          class=""
-        /> -->
       </div>
-      <button type="submit">Register Now</button>
+      <button type="submit" class="w-full rounded-lg text-white px-4 py-2 bg-orange-400 hover:bg-orange-500">Register Now</button>
     </form>
   </div>
 </div>
