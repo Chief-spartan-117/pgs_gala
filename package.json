@@ -1,0 +1,30 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:routify": "routify",
+    "build": "vite build",
+    "preview": "vite preview",
+    "tailwind": "tailwindcss -i ./src/tailwind.css -o ./src/style.css --watch"
+  },
+  "devDependencies": {
+    "@roxi/routify": "^2.18.17",
+    "@sveltejs/vite-plugin-svelte": "^3.1.1",
+    "npm-run-all": "^4.1.5",
+    "svelte": "^4.2.18",
+    "svelte-routing": "^2.13.0",
+    "tailwindcss": "^3.4.4",
+    "vite": "^5.3.1"
+  },
+  "dependencies": {
+    "@egjs/svelte-flicking": "^4.11.3",
+    "axios": "^1.7.2",
+    "prettier": "^3.3.2",
+    "prettier-plugin-svelte": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.6.5",
+    "svelte-icons": "^2.1.0"
+  }
+}

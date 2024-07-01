@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "DMSans";
+    src: url("/assets/font/DMSans-VariableFont.ttf");
+    font-style: normal;
+  }
+}
