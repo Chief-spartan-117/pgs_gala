@@ -28,7 +28,7 @@
           </li>
           <li>
             <Link
-              to="/register?eventId=1"
+              to="/register"
               class="rounded-full bg-orange-400 px-6 py-3 font-bold text-white max-md:text-nowrap max-md:px-4 max-md:py-2"
               >Register Now
             </Link>
