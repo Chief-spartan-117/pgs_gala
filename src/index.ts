@@ -48,9 +48,12 @@ app.get("/api-docs", swaggerUi.setup(swaggerSpec));
 app.use("/admin", adminRoutes);
 app.use(userRoutes);
 
+app.get(/.*/, (req, res) => res.sendFile(__dirname + '/dist/index.html'));
+
 export const prismaClient = new PrismaClient({
   log: ["error"],
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server is listening in port ${PORT}`);
