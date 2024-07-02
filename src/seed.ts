@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
-import { user_in_college } from "./users";
+import { user_in_college } from "./users.ts";
 
 async function main() {
   const superAdmin = await prisma.role.upsert({
@@ -32,15 +32,34 @@ async function main() {
 
   const event = await prisma.event.upsert({
     where: { id: 1 },
-    update: {
-      entryStatus: "PAID",
-    },
+    update: {},
     create: {
       event: "PGS Gala",
+      entryStatus: "PAID",
     },
   });
 
-  console.log({ superAdmin, admin, user, userData });
+  const usersData = user_in_college;
+
+  let count = 1;
+  for (let users of usersData) {
+    await prisma.user.upsert({
+      where: {
+        id: usersData.length + 1,
+      },
+      update: {},
+      create: {
+        firstName: users.first,
+        lastName: users.last,
+        rollNo: users.id,
+        faculty: users.field,
+        email: `${count++}`,
+        phoneNumber: "",
+      },
+    });
+  }
+
+  console.log({ superAdmin, admin, user });
 }
 
 main()
