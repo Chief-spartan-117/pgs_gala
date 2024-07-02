@@ -1,6 +1,10 @@
 import express from "express";
 import { body } from "express-validator";
-import { createUsers, getUsers } from "../controller/userController.ts";
+import {
+  updateUsers,
+  getUsers,
+  getUsersDetail,
+} from "../controller/userController.ts";
 import multer from "multer";
 const upload = multer();
 
@@ -87,9 +91,21 @@ router.post(
       .escape(),
     body("paymentSlip", "Please provide a valid Slip").trim().escape(),
   ],
-  createUsers
+  updateUsers
 );
 
 // router.post("/payment", postPayment);
+
+router.post(
+  "/user-details",
+  [
+    body("rollNo", "Please provide valid Roll No")
+      .trim()
+      .isLength({ min: 8, max: 8 })
+      .escape(),
+    body("faculty", "Faculty does not match").trim().escape(),
+  ],
+  getUsersDetail
+);
 
 export default router;
