@@ -22,7 +22,7 @@ import globalErrorHandler from "./controller/errorController.ts";
 import userRoutes from "./routes/userRoute.ts";
 import adminRoutes from "./routes/adminRoute.ts";
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 const app: Express = express();
 
@@ -58,6 +58,8 @@ app.get("/api-docs", swaggerUi.setup(swaggerSpec));
 
 app.use("/admin", adminRoutes);
 app.use(userRoutes);
+
+app.get(/.*/, (req, res) => res.sendFile(__dirname + "/dist/index.html"));
 
 export const prismaClient = new PrismaClient({
   log: ["error"],

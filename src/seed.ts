@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
-import { userData } from "../users.ts";
+import { user_in_college } from "./users";
 
 async function main() {
   const superAdmin = await prisma.role.upsert({
