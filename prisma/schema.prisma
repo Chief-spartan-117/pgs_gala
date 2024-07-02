@@ -61,7 +61,7 @@ enum EntryStatus {
 
 model UserEventRoles {
   id                 Int                @id @default(autoincrement())
-  userId             Int                @unique
+  userId             Int
   eventId            Int
   roleId             Int                @default(3)
   registrationDate   DateTime           @default(now())
@@ -74,7 +74,7 @@ model UserEventRoles {
   Role               Role               @relation(fields: [roleId], references: [id])
   Event              Event              @relation(fields: [eventId], references: [id])
 
-  @@unique([userId, eventId, roleId])
+  // @@unique([userId, eventId, roleId])
 }
 
 enum RegistrationStatus {
