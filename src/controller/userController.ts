@@ -4,7 +4,7 @@ import path from "path";
 import { prismaClient } from "../index.ts";
 import AppError from "../utils/appError.ts";
 import { catchAsync } from "./../utils/catchAsync.ts";
-import { userData } from "../../users.ts";
+import { user_in_college } from "../users.ts";
 
 export const getUsers = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -13,16 +13,46 @@ export const getUsers = catchAsync(
     if (!user) {
       throw Error("Error getting User");
     }
-    res.json(userData.BBA);
+    res.json(user_in_college);
   }
 );
 
-export const createUsers = catchAsync(
+export const getUsersDetail = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const error = validationResult(req);
+    const { rollNo, faculty } = req.body;
+
+    if (!error.isEmpty()) {
+      return next(new AppError(error.array()[0].msg, 400));
+    }
+
+    const userDetail = await prismaClient.user.findFirst({
+      where: {
+        rollNo: rollNo,
+      },
+    });
+
+    if (!userDetail) {
+      return next(new AppError("User Not Found", 403));
+    }
+
+    return res.json(userDetail);
+  }
+);
+
+export const updateUsers = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const error = validationResult(req);
 
-    const { firstName, lastName, email, rollNo, faculty, phoneNumber } =
-      req.body;
+    const {
+      firstName,
+      lastName,
+      email,
+      rollNo,
+      faculty,
+      phoneNumber,
+      paymentMethod,
+    } = req.body;
 
     const paymentSlip = req.files!.paymentSlip;
     const eventId = req.query.eventId;
@@ -37,41 +67,55 @@ export const createUsers = catchAsync(
 
     // Checking whether the user exists or not
     const userCheck = await prismaClient.user.findFirst({
-      where: { email, rollNo },
+      where: { rollNo },
     });
 
-    if (userCheck) {
-      return next(new AppError("User already exists!", 403));
+    if (!userCheck) {
+      return next(new AppError("User does not exists!", 403));
     }
 
-    // if the user does not exist then we create the user
-    const user = await prismaClient.user.create({
+    // if the user does not exist then we update the user
+    const user = await prismaClient.user.update({
+      where: {
+        rollNo: rollNo,
+      },
       data: {
-        firstName,
-        lastName,
-        email,
-        rollNo,
-        faculty,
+        email: email,
         phoneNumber,
         // This will create a relation between user and the event
-        userEventRoles: {
-          create: {
-            eventId: +eventId!,
-          },
-        },
+        // userEventRoles: {
+        //   create: {
+        //     eventId: +eventId!,
+        //   },
+        // },
       },
-      include: {
-        userEventRoles: true,
-      },
+      // include: {
+      //   userEventRoles: true,
+      // },
     });
 
-    // // Also create a relation between the user and the event
-    // const eventCreate = await prismaClient.userEventRoles.create({
-    //   data: {
-    //     userId: user.id,
-    //     eventId: +eventId!,
-    //   },
-    // });
+    // Also create a relation between the user and the event
+
+    const userInEvent = await prismaClient.userEventRoles.findFirst({
+      where: {
+        userId: user.id,
+        eventId: +eventId!,
+      },
+    });
+    let userIsInEvent;
+
+    if (!userInEvent) {
+      userIsInEvent = await prismaClient.userEventRoles.create({
+        data: {
+          userId: user.id,
+          eventId: +eventId!,
+        },
+      });
+    } else {
+      next(new AppError("User already registered", 403));
+    }
+
+    console.log("userIsInEvent Check", userIsInEvent);
 
     // use this for checking whether the event is free or PAID and also to check whether the users paymentStatus is PAID or not
     const event = await prismaClient.event.findFirst({
@@ -81,7 +125,10 @@ export const createUsers = catchAsync(
     // checking and uploading the file into the storage
 
     if (event?.entryStatus === "PAID") {
-      if (user.userEventRoles[0].paymentStatus === "NOT_PAID") {
+      if (
+        userIsInEvent!.paymentStatus === "NOT_PAID" &&
+        paymentMethod !== "Cash"
+      ) {
         // @ts-ignore
         if (paymentSlip.mimetype.split("/")[0] === "image") {
           const newFileName =
@@ -102,10 +149,13 @@ export const createUsers = catchAsync(
             } else {
               await prismaClient.userEventRoles.update({
                 where: {
+                  id: userIsInEvent!.id,
                   userId: user.id,
+                  eventId: +eventId!,
                 },
                 data: {
                   paymentSlip: newFileName,
+                  paymentStatus: "PAID",
                 },
               });
               return res.json("File Uploaded successfully");
@@ -131,20 +181,38 @@ export const createUsers = catchAsync(
             } else {
               await prismaClient.userEventRoles.update({
                 where: {
+                  id: userIsInEvent!.id,
                   userId: user.id,
+                  eventId: +eventId!,
                 },
                 data: {
                   paymentSlip: newFileName,
+                  paymentStatus: "PAID",
                 },
               });
               return res.json("File Uploaded successfully");
             }
           });
         } else {
-          return res.json("Invalid File type");
+          return next(new AppError("Invalid File type", 400));
         }
       } else {
-        return res.json({ message: "You have already submitted the slip" });
+        await prismaClient.userEventRoles
+          .update({
+            where: {
+              id: userIsInEvent!.id,
+              userId: user.id,
+              eventId: +eventId!,
+            },
+            data: {
+              paymentStatus: "NOT_PAID_AND_CASH",
+              paymentSlip: "Cash",
+            },
+          })
+          .then(() => {
+            return res.json("User Registerd Successfully");
+          });
+        return next(new AppError("You have already submitted the slip", 403));
       }
     } else {
       return res.json(user);
