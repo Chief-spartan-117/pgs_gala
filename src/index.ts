@@ -13,7 +13,7 @@ import path from "path";
 import userRoutes from "./routes/userRoute.ts";
 import adminRoutes from "./routes/adminRoute.ts";
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 const app: Express = express();
 
