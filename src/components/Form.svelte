@@ -90,7 +90,7 @@
 
 <div class="item-center flex justify-center sm:my-8 md:my-12">
   <div
-    class="w-[32rem] rounded-2xl px-6 py-4 shadow-[0_0_2rem_0.5rem_rgba(0,0,0,0.05)] max-sm:w-full max-sm:p-0"
+    class="w-[32rem] rounded-2xl px-6 py-4 shadow-[0_0_2rem_0.5rem_rgba(0,0,0,0.05)] max-sm:w-full"
   >
     <div>
       <h1 class="mb-8 mt-2 text-center text-3xl font-bold">
@@ -262,7 +262,7 @@
             slideNumber = 1;
           }}
           >{paymentOptions === "Esewa" && base64String == ""
-            ? "Unlock"
+            ? "Upload Screenshot to Unlock"
             : "Next"}</button
         >
       {:else}
