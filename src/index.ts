@@ -1,14 +1,23 @@
 import "dotenv/config";
-import express, { type Express } from "express";
+import express, {
+  type ErrorRequestHandler,
+  type Express,
+  type NextFunction,
+  type Request,
+  type Response,
+} from "express";
 import bodyParser from "body-parser";
 import { PrismaClient } from "@prisma/client";
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
 import helmet from "helmet";
-import busboy from "connect-busboy";
 import upload from "express-fileupload";
 import cors from "cors";
 import path from "path";
+import { handler } from "./build/handler.js";
+
+import AppError from "./utils/appError.ts";
+import globalErrorHandler from "./controller/errorController.ts";
 
 import userRoutes from "./routes/userRoute.ts";
 import adminRoutes from "./routes/adminRoute.ts";
@@ -21,7 +30,7 @@ app.use(cors());
 app.use(helmet());
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static(path.join(__dirname, "dist")));
+// app.use(express.static(path.join(__dirname, "dist")));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,12 +54,20 @@ const swaggerSpec = swaggerJsdoc(options);
 app.use("/api-docs", swaggerUi.serve);
 app.get("/api-docs", swaggerUi.setup(swaggerSpec));
 
+// app.use(handler);
+
 app.use("/admin", adminRoutes);
 app.use(userRoutes);
 
 export const prismaClient = new PrismaClient({
   log: ["error"],
 });
+
+app.all("*", (req: Request, res: Response, next: NextFunction) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
+});
+
+app.use(globalErrorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is listening in port ${PORT}`);

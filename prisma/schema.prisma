@@ -87,4 +87,5 @@ enum RegistrationStatus {
 enum PaymentStatus {
   NOT_PAID
   PAID
+  NOT_PAID_AND_CASH
 }

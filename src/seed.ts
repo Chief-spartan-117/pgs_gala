@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
+import { userData } from "../users.ts";
 
 async function main() {
   const superAdmin = await prisma.role.upsert({
@@ -29,7 +30,17 @@ async function main() {
     },
   });
 
-  console.log({ superAdmin, admin, user });
+  const event = await prisma.event.upsert({
+    where: { id: 1 },
+    update: {
+      entryStatus: "PAID",
+    },
+    create: {
+      event: "PGS Gala",
+    },
+  });
+
+  console.log({ superAdmin, admin, user, userData });
 }
 
 main()

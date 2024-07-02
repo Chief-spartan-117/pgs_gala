@@ -1,26 +1,10 @@
 import express from "express";
 import { body } from "express-validator";
-import {
-  createUsers,
-  getUsers,
-  postPayment,
-} from "../controller/userController.ts";
+import { createUsers, getUsers } from "../controller/userController.ts";
 import multer from "multer";
 const upload = multer();
 
 const router = express.Router();
-
-/**
- * @swagger
- * /:
- *   get:
- *     summary: Used to reterive all user
- *     description: Returns all users
- *     responses:
- *       200:
- *         description: To get all the users
- */
-router.get("/", getUsers);
 
 /**
  * @swagger
@@ -42,6 +26,8 @@ router.get("/", getUsers);
  *                            faculty:
  *                                 type: string
  */
+
+router.get("/", getUsers);
 
 /**
  * @swagger
@@ -79,9 +65,11 @@ router.post(
       .isEmail({ domain_specific_validation: true })
       .custom((value) => {
         const emailDomain = value.split("@")[1];
-        const domainPattern = ["westcliff.edu"];
+        const domainPattern = ["westcliff.edu", "gmail.com"];
         if (!domainPattern.includes(emailDomain)) {
-          throw new Error("Email domain must be " + domainPattern);
+          throw new Error(
+            `Email domain must be ${domainPattern[0]} or ${domainPattern[1]}`
+          );
         }
         return true;
       })
@@ -102,6 +90,6 @@ router.post(
   createUsers
 );
 
-router.post("/payment", postPayment);
+// router.post("/payment", postPayment);
 
 export default router;
