@@ -256,7 +256,10 @@
       {#if slideNumber === 0}
         <button
           disabled={paymentOptions === "Esewa" && base64String == ""}
-          class="w-full rounded-lg bg-orange-400 px-4 py-2 text-white hover:bg-orange-500"
+          class="w-full rounded-lg bg-orange-400 px-4 py-2 text-white hover:bg-orange-500 {paymentOptions ===
+            'Esewa' && base64String == ''
+            ? 'cursor-not-allowed'
+            : ''}"
           on:click={() => {
             flicking.next();
             slideNumber = 1;
