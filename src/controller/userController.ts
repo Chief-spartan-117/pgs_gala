@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import { validationResult } from "express-validator";
-import path from "path";
+import path from "node:path";
 import { prismaClient } from "../index.ts";
 import AppError from "../utils/appError.ts";
 import { catchAsync } from "./../utils/catchAsync.ts";
@@ -57,7 +57,7 @@ export const updateUsers = catchAsync(
     console.log(req.body);
 
     const paymentSlip =
-      paymentMethod === "Cash" ? "Cash" : req.files!.paymentSlip;
+      paymentMethod === "Cash" ? "Cash" : req.files?.paymentSlip;
     const eventId = req.query.eventId;
 
     // console.log(eventId);
@@ -129,19 +129,17 @@ export const updateUsers = catchAsync(
 
     if (event?.entryStatus === "PAID") {
       if (
-        userIsInEvent!.paymentStatus === "NOT_PAID" &&
+        userIsInEvent?.paymentStatus === "NOT_PAID" &&
         paymentMethod !== "Cash"
       ) {
         // @ts-ignore
         if (paymentSlip.mimetype.split("/")[0] === "image") {
-          const newFileName =
-            user.firstName +
-            "_" +
-            Date.now() +
-            "_" +
-            "paymentSlip" +
-            // @ts-ignore
-            paymentSlip.mimetype.replace("image/", ".");
+          const newFileName = `${
+            user.firstName
+          }_${Date.now()}_paymentSlip${paymentSlip!.mimetype.replace(
+            "image/",
+            "."
+          )}`;
 
           let uploadPath = path.join(__dirname, "..", "/public/") + newFileName;
 
@@ -166,19 +164,17 @@ export const updateUsers = catchAsync(
           });
           // @ts-ignore
         } else if (paymentSlip.mimetype === "application/pdf") {
-          const newFileName =
-            user.firstName +
-            "_" +
-            Date.now() +
-            "_" +
-            "paymentSlip" +
-            // @ts-ignore
-            paymentSlip.mimetype.replace("application/", ".");
+          const newFileName = `${
+            user.firstName
+          }_${Date.now()}_paymentSlip${paymentSlip!.mimetype.replace(
+            "application/",
+            "."
+          )}`;
 
           let uploadPath = path.join(__dirname, "..", "/public/") + newFileName;
 
           // @ts-ignore
-          paymentSlip.mv(uploadPath, async function (err) {
+          paymentSlip.mv(uploadPath, async (err) => {
             if (err) {
               return res.json(err);
             } else {
