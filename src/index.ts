@@ -14,7 +14,6 @@ import helmet from "helmet";
 import upload from "express-fileupload";
 import cors from "cors";
 import path from "path";
-import { handler } from "./build/handler.js";
 
 import AppError from "./utils/appError.ts";
 import globalErrorHandler from "./controller/errorController.ts";
@@ -30,7 +29,7 @@ app.use(cors());
 app.use(helmet());
 
 app.use(express.static(path.join(__dirname, "public")));
-// app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static(path.join(__dirname, "dist")));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

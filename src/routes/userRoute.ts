@@ -5,8 +5,6 @@ import {
   getUsers,
   getUsersDetail,
 } from "../controller/userController.ts";
-import multer from "multer";
-const upload = multer();
 
 const router = express.Router();
 

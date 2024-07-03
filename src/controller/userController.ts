@@ -8,12 +8,12 @@ import { user_in_college } from "../users.ts";
 
 export const getUsers = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const user = await prismaClient.user.findMany();
-
-    if (!user) {
-      throw Error("Error getting User");
-    }
-    res.json(user_in_college);
+    // const user = await prismaClient.user.findMany();
+    // if (!user) {
+    //   throw Error("Error getting User");
+    // }
+    // res.json(user_in_college);
+    res.send("index.html");
   }
 );
 
@@ -54,7 +54,10 @@ export const updateUsers = catchAsync(
       paymentMethod,
     } = req.body;
 
-    const paymentSlip = req.files!.paymentSlip;
+    console.log(req.body);
+
+    const paymentSlip =
+      paymentMethod === "Cash" ? "Cash" : req.files!.paymentSlip;
     const eventId = req.query.eventId;
 
     // console.log(eventId);
@@ -81,7 +84,7 @@ export const updateUsers = catchAsync(
       },
       data: {
         email: email,
-        phoneNumber,
+        phoneNumber: phoneNumber,
         // This will create a relation between user and the event
         // userEventRoles: {
         //   create: {
