@@ -18,6 +18,7 @@
   let paymentOptions;
   let flicking;
   let slideNumber = 0;
+  let emailDomain;
 
   // @ts-ignore
   const plugins = [new Arrow()];
@@ -27,12 +28,13 @@
     event.preventDefault();
     const formData = new FormData();
     formData.append("paymentSlip", file);
-    formData.append("rollNo", rollNo);
-    formData.append("email", `${email.trim()}@westcliff.edu`);
+    formData.append("rollNo", `BN${rollNo}`);
+    formData.append("email", `${email.trim()}${emailDomain}`);
     formData.append("firstName", firstName);
     formData.append("lastName", lastName);
     formData.append("faculty", faculty);
     formData.append("phoneNumber", phoneNumber);
+    formData.append("paymentMethod", paymentOptions);
 
     // const response = await axios.post(
     //   "http://localhost:3000/register?eventId=1",
@@ -163,7 +165,7 @@
           </div>
         </FlickingPanel>
         <FlickingPanel>
-          <div class="flex h-full flex-col justify-end gap-y-4">
+          <div class="flex h-full flex-col justify-end gap-y-4 px-2 py-2">
             <div class="flex flex-row justify-between gap-4 max-md:flex-col">
               <!-- Roll no -->
               <div
@@ -191,7 +193,7 @@
                 bind:value={faculty}
                 class="flex-auto rounded-xl border border-slate-300 px-3 py-3 focus-within:outline-orange-200"
               >
-                <option value="BSc.IT">BSc.IT</option>
+                <option value="BSc.IT" selected>BSc.IT</option>
                 <option value="BBA">BBA</option>
                 <option value="MSc.IT">MSc.IT</option>
                 <option value="MBA">MBA</option>
@@ -226,11 +228,19 @@
                 placeholder="Email"
                 class="flex-auto rounded-xl px-2 py-2 focus-visible:outline-transparent"
               />
-              <div
+              <!-- <div
                 class=" h-auto w-auto rounded-lg border border-slate-300 px-4 py-2"
+              > -->
+              <select
+                name="faculty"
+                id="faculty"
+                bind:value={emailDomain}
+                class="flex-auto rounded-xl border border-slate-300 px-3 py-3 focus-within:outline-orange-200"
               >
-                @westcliff.edu
-              </div>
+                <option value="@westcliff.edu">@westcliff.edu</option>
+                <option value="@gmail.com">@gmail.com</option>
+              </select>
+              <!-- </div> -->
             </div>
             <div
               class="flex flex-row items-center rounded-xl border border-slate-300 px-1 py-1 focus-within:border-transparent focus-within:outline focus-within:outline-2 focus-within:outline-orange-200"
