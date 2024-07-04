@@ -1,10 +1,6 @@
 import express from "express";
 import { body } from "express-validator";
-import {
-  updateUsers,
-  getUsers,
-  getUsersDetail,
-} from "../controller/userController.ts";
+import { updateUsers, getUsersDetail } from "../controller/userController.ts";
 
 const router = express.Router();
 
@@ -28,8 +24,6 @@ const router = express.Router();
  *                            faculty:
  *                                 type: string
  */
-
-router.get("/", getUsers);
 
 /**
  * @swagger

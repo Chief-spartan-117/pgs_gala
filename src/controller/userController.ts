@@ -4,23 +4,11 @@ import path from "node:path";
 import { prismaClient } from "../index.ts";
 import AppError from "../utils/appError.ts";
 import { catchAsync } from "./../utils/catchAsync.ts";
-// import { user_in_college } from "../users.ts";
-
-export const getUsers = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
-    // const user = await prismaClient.user.findMany();
-    // if (!user) {
-    //   throw Error("Error getting User");
-    // }
-    // res.json(user_in_college);
-    res.send("index.html");
-  }
-);
 
 export const getUsersDetail = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const error = validationResult(req);
-    const { rollNo, faculty } = req.body;
+    const { rollNo } = req.body;
 
     if (!error.isEmpty()) {
       return next(new AppError(error.array()[0].msg, 400));
@@ -48,23 +36,11 @@ export const updateUsers = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const error = validationResult(req);
 
-    const {
-      firstName,
-      lastName,
-      email,
-      rollNo,
-      faculty,
-      phoneNumber,
-      paymentMethod,
-    } = req.body;
-
-    console.log(req.body);
+    const { email, rollNo, phoneNumber, paymentMethod } = req.body;
 
     const paymentSlip =
       paymentMethod === "Cash" ? "Cash" : req.files?.paymentSlip;
     const eventId = req.query.eventId;
-
-    // console.log(eventId);
 
     // Checking whether there are any errors in input
 
@@ -89,16 +65,7 @@ export const updateUsers = catchAsync(
       data: {
         email: email,
         phoneNumber: phoneNumber,
-        // This will create a relation between user and the event
-        // userEventRoles: {
-        //   create: {
-        //     eventId: +eventId!,
-        //   },
-        // },
       },
-      // include: {
-      //   userEventRoles: true,
-      // },
     });
 
     // Also create a relation between the user and the event
@@ -109,6 +76,7 @@ export const updateUsers = catchAsync(
         eventId: +eventId!,
       },
     });
+
     let userIsInEvent;
 
     if (!userInEvent) {
@@ -121,8 +89,6 @@ export const updateUsers = catchAsync(
     } else {
       next(new AppError("User already registered", 403));
     }
-
-    console.log("userIsInEvent Check", userIsInEvent);
 
     // use this for checking whether the event is free or PAID and also to check whether the users paymentStatus is PAID or not
     const event = await prismaClient.event.findFirst({
@@ -222,29 +188,3 @@ export const updateUsers = catchAsync(
     }
   }
 );
-
-// export const postPayment = async (req: Request, res: Response) => {
-//   const { rollNo, email } = req.body;
-//   const paymentSlip = req.files;
-//   if (req.files) {
-//     console.log(paymentSlip, rollNo, email);
-//     const file = req.files.paymentSlip;
-//     const fileName = file.name;
-//     const newFileName =
-//       Date.now() + "_" + "paymentSlip" + file.mimetype.replace("image/", ".");
-
-//     let uploadPath = path.join(__dirname, "..", "/public/") + newFileName;
-
-//     file.mv(uploadPath, function (err) {
-//       if (err) {
-//         res.json(err);
-//       } else {
-//         res.json("File Uploaded successfully");
-//       }
-//     });
-
-//     return res.json("success");
-//   }
-
-//   return res.json(rollNo);
-// };
