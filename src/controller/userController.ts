@@ -4,7 +4,7 @@ import path from "node:path";
 import { prismaClient } from "../index.ts";
 import AppError from "../utils/appError.ts";
 import { catchAsync } from "./../utils/catchAsync.ts";
-import { user_in_college } from "../users.ts";
+// import { user_in_college } from "../users.ts";
 
 export const getUsers = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
