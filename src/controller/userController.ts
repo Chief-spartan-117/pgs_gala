@@ -87,7 +87,7 @@ export const updateUsers = catchAsync(
         },
       });
     } else {
-      next(new AppError("User already registered", 403));
+      return next(new AppError("User already registered", 403));
     }
 
     // use this for checking whether the event is free or PAID and also to check whether the users paymentStatus is PAID or not
@@ -174,8 +174,8 @@ export const updateUsers = catchAsync(
               eventId: +eventId!,
             },
             data: {
-              paymentStatus: "NOT_PAID_AND_CASH",
               paymentSlip: "Cash",
+              paymentStatus: "NOT_PAID_AND_CASH",
             },
           })
           .then(() => {
