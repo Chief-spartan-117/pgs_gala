@@ -36,7 +36,11 @@ export const getUsersDetail = catchAsync(
       return next(new AppError("User Not Found", 403));
     }
 
-    return res.json(userDetail);
+    return res.json({
+      faculty: userDetail.faculty,
+      firstName: userDetail.firstName,
+      lastName: userDetail.lastName,
+    });
   }
 );
 
