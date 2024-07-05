@@ -4,21 +4,22 @@
   import { Router, Link, Route } from "svelte-routing";
   import Form from "./components/Form.svelte";
   import Main from "./components/Main.svelte";
-  import galaLogo from "./assets/img/pbs.png";
+  import galaLogo from "./assets/img/PBS long logo.png";
 </script>
 
-<div class="h-screen bg-[rgb(5_16_58)]" style="overflow: hidden;">
+<div class="h-screen bg-[rgb(5_16_58)]">
   <Router>
     <header
-      class="fixed z-10 mb-3 w-screen px-16 px-2 pb-2 pt-4 max-md:mx-4 max-md:px-1 max-md:py-2"
+      class="relative z-20 mb-3 w-full px-16 pb-2 pt-6 max-lg:px-8
+       max-md:flex max-md:w-full max-md:px-4"
     >
-      <nav class="flex items-center justify-between gap-8 max-md:gap-4">
+      <nav class="flex w-full items-center justify-between gap-8 max-md:gap-4">
         <div>
           <Link to="/">
             <img
               src={galaLogo}
               alt="PGS Gala Logo"
-              class="ml-4 w-16 max-md:ml-1 max-md:w-24"
+              class="ml-4 w-44 max-md:ml-1 max-md:w-28 max-sm:w-28"
             />
           </Link>
         </div>
@@ -56,7 +57,7 @@
     left: 0;
     z-index: 1;
     mask-image: radial-gradient(
-      60% 60% at 50% 50%,
+      55% 60% at 50% 50%,
       rgba(170, 91, 12, 0.2) 70%,
       rgba(99, 57, 11, 0.8) 100%
     );

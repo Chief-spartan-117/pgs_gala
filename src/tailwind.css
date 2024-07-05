@@ -9,6 +9,188 @@
     font-style: normal;
   }
 
+  @font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-BoldItalic.eot');
+    src: local('Cadiz Bold Italic'), local('Cadiz-BoldItalic'),
+        url('Cadiz-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-Black.eot');
+    src: local('Cadiz Black'), local('Cadiz-Black'),
+        url('Cadiz-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-BlackItalic.eot');
+    src: local('Cadiz Black Italic'), local('Cadiz-BlackItalic'),
+        url('Cadiz-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-SemiBoldItalic.eot');
+    src: local('Cadiz SemiBold Italic'), local('Cadiz-SemiBoldItalic'),
+        url('Cadiz-SemiBoldItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-LightItalic.eot');
+    src: local('Cadiz Light Italic'), local('Cadiz-LightItalic'),
+        url('Cadiz-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-ExtraBold.eot');
+    src: local('Cadiz ExtraBold'), local('Cadiz-ExtraBold'),
+        url('Cadiz-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-Italic.eot');
+    src: local('Cadiz Italic'), local('Cadiz-Italic'),
+        url('Cadiz-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Cadiz Ultra';
+    src: url('Cadiz-UltraItalic.eot');
+    src: local('Cadiz Ultra Italic'), local('Cadiz-UltraItalic'),
+        url('Cadiz-UltraItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-Bold.eot');
+    src: local('Cadiz Bold'), local('Cadiz-Bold'),
+        url('Cadiz-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-ThinItalic.eot');
+    src: local('Cadiz Thin Italic'), local('Cadiz-ThinItalic'),
+        url('Cadiz-ThinItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-ExtraBoldItalic.eot');
+    src: local('Cadiz ExtraBold Italic'), local('Cadiz-ExtraBoldItalic'),
+        url('Cadiz-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-Thin.eot');
+    src: local('Cadiz Thin'), local('Cadiz-Thin'),
+        url('Cadiz-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-MediumItalic.eot');
+    src: local('Cadiz Medium Italic'), local('Cadiz-MediumItalic'),
+        url('Cadiz-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Cadiz Ultra';
+    src: url('Cadiz-Ultra.eot');
+    src: local('Cadiz Ultra'), local('Cadiz-Ultra'),
+        url('Cadiz-Ultra.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-Medium.eot');
+    src: local('Cadiz Medium'), local('Cadiz-Medium'),
+        url('Cadiz-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-SemiBold.eot');
+    src: local('Cadiz SemiBold'), local('Cadiz-SemiBold'),
+        url('Cadiz-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-ExtraLightItalic.eot');
+    src: local('Cadiz ExtraLight Italic'), local('Cadiz-ExtraLightItalic'),
+        url('Cadiz-ExtraLightItalic.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-ExtraLight.eot');
+    src: local('Cadiz ExtraLight'), local('Cadiz-ExtraLight'),
+        url('Cadiz-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-Regular.eot');
+    src: local('Cadiz'), local('Cadiz-Regular'),
+        url('Cadiz-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cadiz';
+    src: url('Cadiz-Light.eot');
+    src: local('Cadiz Light'), local('Cadiz-Light'),
+        url('Cadiz-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+
   body {
     font-family:
       "DMSans",
