@@ -7,10 +7,10 @@
   import galaLogo from "./assets/img/pbs.png";
 </script>
 
-<div class="h-screen bg-[rgb(5_16_58)]">
+<div class="h-screen bg-[rgb(5_16_58)]" style="overflow: hidden;">
   <Router>
     <header
-      class="relative z-10 mx-16 mb-3 px-2 pb-2 pt-4 max-md:mx-4 max-md:px-1 max-md:py-2"
+      class="fixed z-10 mb-3 w-screen px-16 px-2 pb-2 pt-4 max-md:mx-4 max-md:px-1 max-md:py-2"
     >
       <nav class="flex items-center justify-between gap-8 max-md:gap-4">
         <div>

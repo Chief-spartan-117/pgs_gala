@@ -175,7 +175,10 @@
   {/if}
 {/if}
 
-<div class="item-center relative z-10 flex justify-center sm:my-8 md:my-12">
+<div
+  class="item-center z-10 flex h-screen w-screen justify-center sm:my-8 md:my-12"
+  style="overflow: auto"
+>
   <div
     class="max-md:2 w-[32rem] rounded-2xl bg-blue-950 px-8 py-6 shadow-[0_0_2rem_0.5rem_rgba(0,0,0,0.05)] max-sm:w-full max-sm:px-3"
   >

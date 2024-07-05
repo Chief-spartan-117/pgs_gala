@@ -10,9 +10,12 @@
   </title>
 </svelte:head>
 
-<div class="h-screen w-screen" style="background-color: #05103A;">
+<div
+  class="h-screen w-screen overflow-hidden"
+  style="background-color: #05103A; overflow:hidden;"
+>
   <div
-    class="flex h-full w-full items-center justify-center text-white"
+    class="flex h-full w-full items-center justify-center overflow-y-auto text-white"
     style="background: url({background}); background-size: cover; background-position: center; display: flex; flex-direction: column;"
   >
     <img class="-ml-2 -mt-2 sm:h-[500px] max-sm:w-full" src={mask} />
