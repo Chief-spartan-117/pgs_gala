@@ -5,6 +5,8 @@
   import Flicking, { FlickingPanel } from "@egjs/svelte-flicking";
   import { Arrow } from "@egjs/flicking-plugins";
   import galaLogo from "../assets/img/logo.png";
+  import asip from "../assets/asip.png";
+  import axios from "axios";
   // import axios from "axios";
   let file;
   let rollNo;
@@ -19,11 +21,34 @@
   let flicking;
   let slideNumber = 0;
   let emailDomain;
+  let timeout_val = 0;
 
   // @ts-ignore
   const plugins = [new Arrow()];
 
   let fileName = "No File Selected";
+
+  async function getUserInfo(){
+    if(timeout_val == 0){
+      timeout_val = 1
+      setTimeout(async ()=>{
+        const formData = new FormData();
+        formData.append("rollNo", `BN${rollNo}`);
+        try {
+          const response = await axios.post("https://gala.presidential.edu.np/user-details", formData)
+          const user_data = response.data
+          firstName = user_data.firstName
+          lastName = user_data.lastName
+          faculty = user_data.faculty
+        } catch (error) {
+          console.log(error)
+        }
+        
+        timeout_val = 0
+      }, 500)
+    }
+  }
+
   async function submitForm(event) {
     event.preventDefault();
     const formData = new FormData();
@@ -35,6 +60,7 @@
     formData.append("faculty", faculty);
     formData.append("phoneNumber", phoneNumber);
     formData.append("paymentMethod", paymentOptions);
+
 
     // const response = await axios.post(
     //   "http://localhost:3000/register?eventId=1",
@@ -114,7 +140,7 @@
         }}
       >
         <FlickingPanel>
-          <div class="flex flex-col gap-y-4">
+          <div class="flex flex-col gap-y-4 text-center">
             <label for="paymentOptions" class="flex flex-col gap-2">
               <p>Choose Your Payment Options</p>
               <select
@@ -129,7 +155,8 @@
               </select>
             </label>
             {#if paymentOptions == "Esewa"}
-              <div>
+            <div class="flex justify-center"><img src="{asip}" class="w-full sm:w-72" alt="" srcset=""></div>
+            <div>
                 <label
                   for="payment"
                   class=" relative flex h-36 flex-auto cursor-pointer items-center justify-center rounded-2xl border border-dashed border-orange-400 bg-slate-50"
@@ -182,6 +209,7 @@
                   name="rollNo"
                   id="rollNo"
                   bind:value={rollNo}
+                  on:input={() => getUserInfo()}
                   placeholder="Roll No"
                   class="scroll-remove flex-auto rounded-xl px-2 py-2 focus-visible:outline-transparent"
                 />
@@ -191,22 +219,23 @@
                 name="faculty"
                 id="faculty"
                 bind:value={faculty}
+                disabled
                 class="flex-auto rounded-xl border border-slate-300 px-3 py-3 focus-within:outline-orange-200"
               >
-                <option value="BSc.IT" selected>BSc.IT</option>
+                <option value="BSIT" selected>BSIT</option>
                 <option value="BBA">BBA</option>
-                <option value="MSc.IT">MSc.IT</option>
+                <option value="MSIT">MSIT</option>
                 <option value="MBA">MBA</option>
               </select>
             </div>
 
-            <div class="flex flex-row justify-between gap-4 max-md:flex-col">
               <input
                 type="text"
                 name="firstName"
                 id="firstName"
                 placeholder="First Name"
                 bind:value={firstName}
+                disabled
                 class="flex-auto rounded-xl border border-slate-300 px-3 py-3 focus-within:outline-orange-200"
               />
               <input
@@ -215,9 +244,9 @@
                 id="lastName"
                 placeholder="Last Name"
                 bind:value={lastName}
+                disabled
                 class="flex-auto rounded-xl border border-slate-300 px-3 py-3 focus-within:outline-orange-200"
               />
-            </div>
             <div
               class="flex flex-row items-center rounded-xl border border-slate-300 px-1 py-1 focus-within:border-transparent focus-within:outline focus-within:outline-2 focus-within:outline-orange-200"
             >
