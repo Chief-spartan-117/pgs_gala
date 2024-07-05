@@ -1,6 +1,9 @@
 <script>
   // @ts-ignore
   import WiCloudUp from "svelte-icons/wi/WiCloudUp.svelte";
+  import MdError from "svelte-icons/md/MdError.svelte";
+  import MdCheckCircle from "svelte-icons/md/MdCheckCircle.svelte";
+
   import "@egjs/svelte-flicking/dist/flicking.css";
   import Flicking, { FlickingPanel } from "@egjs/svelte-flicking";
   import { Arrow } from "@egjs/flicking-plugins";
@@ -19,11 +22,14 @@
   let flicking;
   let slideNumber = 0;
   let emailDomain;
+  let responseMessage = {};
+  let showResponseMessage = false;
 
   // @ts-ignore
   const plugins = [new Arrow()];
 
   let fileName = "No File Selected";
+
   async function submitForm(event) {
     event.preventDefault();
     const formData = new FormData();
@@ -46,16 +52,33 @@
     //   },
     // );
     // console.log(response.data);
-    const response = await fetch("/register", {
-      method: "POST",
-      body: formData,
-    });
+    try {
+      const response = await fetch("http://localhost:3000/register?eventId=1", {
+        method: "POST",
+        body: formData,
+      });
 
-    if (response.ok) {
-      console.log("File uploaded successfully");
-    } else {
-      console.error("File upload failed");
+      if (response.ok) {
+        const responseData = await response.json();
+        responseMessage = responseData;
+        console.log("User Registered Successfully", responseMessage);
+      } else {
+        const errorData = await response.json();
+        responseMessage = errorData;
+        console.error("File upload failed", responseMessage);
+      }
+      // console.log(responseMessage);
+    } catch (error) {
+      console.error(error);
+      responseMessage = "An unexpected error occurred.";
     }
+    // finally {
+    //   showResponseMessage = true;
+    //   setTimeout(() => {
+    //     showResponseMessage = false;
+    //   }, 2000);
+    // }
+    console.log(responseMessage);
   }
 
   function fileUpload(event) {
@@ -81,6 +104,13 @@
   function change_payment() {
     console.log(paymentOptions);
   }
+
+  function showMessage() {
+    showResponseMessage = true;
+    setTimeout(() => {
+      showResponseMessage = false;
+    }, 5000);
+  }
 </script>
 
 <svelte:head>
@@ -90,12 +120,40 @@
   >
 </svelte:head>
 
-<div class="item-center flex justify-center sm:my-8 md:my-12">
+{#if responseMessage}
+  {#if responseMessage.status === "Fail" || responseMessage.status === "Error"}
+    <!-- {showMessage()} -->
+    <div
+      class="absolute left-1/2 top-10 z-10 flex -translate-x-1/2 flex-row items-center gap-x-2 rounded-md border-b-4 border-red-800 bg-red-300 px-4 py-2"
+    >
+      <div class="w-6 text-red-600">
+        <MdError></MdError>
+      </div>
+      <p class="text-red-800">
+        {responseMessage.message}
+      </p>
+    </div>
+  {:else if responseMessage.status === "success"}
+    <!-- {showMessage()} -->
+    <div
+      class="absolute left-1/2 top-10 z-10 flex -translate-x-1/2 flex-row items-center gap-x-2 rounded-md border-b-4 border-green-800 bg-green-300 px-4 py-2"
+    >
+      <div class="w-6 text-green-600">
+        <MdCheckCircle></MdCheckCircle>
+      </div>
+      <p class="text-green-800">
+        {responseMessage.message}
+      </p>
+    </div>
+  {/if}
+{/if}
+
+<div class="item-center relative z-10 flex justify-center sm:my-8 md:my-12">
   <div
-    class="w-[32rem] rounded-2xl px-6 py-4 shadow-[0_0_2rem_0.5rem_rgba(0,0,0,0.05)] max-sm:w-full"
+    class="max-md:2 w-[32rem] rounded-2xl bg-blue-950 px-8 py-6 shadow-[0_0_2rem_0.5rem_rgba(0,0,0,0.05)] max-sm:w-full max-sm:px-3"
   >
     <div>
-      <h1 class="mb-8 mt-2 text-center text-3xl font-bold">
+      <h1 class="mb-8 mt-2 text-center text-3xl font-bold text-white">
         Registration Form
       </h1>
     </div>
@@ -116,7 +174,7 @@
         <FlickingPanel>
           <div class="flex flex-col gap-y-4">
             <label for="paymentOptions" class="flex flex-col gap-2">
-              <p>Choose Your Payment Options</p>
+              <p class="text-white">Choose Your Payment Options</p>
               <select
                 class="rounded-lg border border-slate-200 px-2 py-2"
                 bind:value={paymentOptions}
@@ -132,7 +190,7 @@
               <div>
                 <label
                   for="payment"
-                  class=" relative flex h-36 flex-auto cursor-pointer items-center justify-center rounded-2xl border border-dashed border-orange-400 bg-slate-50"
+                  class=" relative flex h-36 flex-auto cursor-pointer items-center justify-center rounded-2xl border border-dashed border-orange-400 bg-slate-50/15"
                   on:dragover|preventDefault
                   on:drop|preventDefault={(e) => fileUpload(e)}
                 >
@@ -150,12 +208,12 @@
                     hidden
                     bind:this={root}
                   />
-                  <div class="h-8 w-8">
+                  <div class="h-8 w-8 text-white">
                     <WiCloudUp />
                   </div>
-                  Upload Payment Screenshot
+                  <p class="text-white">Upload Payment Screenshot</p>
                 </label>
-                <div><h6>{fileName}</h6></div>
+                <div><h6 class="text-white">{fileName}</h6></div>
               </div>
             {:else}
               <div>
@@ -169,10 +227,10 @@
             <div class="flex flex-row justify-between gap-4 max-md:flex-col">
               <!-- Roll no -->
               <div
-                class="flex flex-auto flex-row items-center rounded-xl border border-slate-300 px-1 py-1 focus-within:border-transparent focus-within:outline focus-within:outline-2 focus-within:outline-orange-200"
+                class="flex flex-auto flex-row items-center rounded-xl border border-slate-300 bg-slate-50 px-1 py-1 focus-within:border-transparent focus-within:outline focus-within:outline-2 focus-within:outline-orange-200"
               >
                 <div
-                  class=" mr-1 h-auto w-auto rounded-lg border border-slate-300 px-4 py-2"
+                  class=" mr-1 h-auto w-auto rounded-lg border-2 border-slate-300 px-4 py-2"
                 >
                   BN
                 </div>
@@ -219,14 +277,14 @@
               />
             </div>
             <div
-              class="flex flex-row items-center rounded-xl border border-slate-300 px-1 py-1 focus-within:border-transparent focus-within:outline focus-within:outline-2 focus-within:outline-orange-200"
+              class="flex flex-row items-center rounded-xl border border-slate-300 bg-slate-50 px-1 py-1 focus-within:border-transparent focus-within:outline focus-within:outline-2 focus-within:outline-orange-200 max-sm:flex-col"
             >
               <input
                 type="text"
                 name="email"
                 bind:value={email}
                 placeholder="Email"
-                class="flex-auto rounded-xl px-2 py-2 focus-visible:outline-transparent"
+                class="flex-auto rounded-xl px-2 py-2 focus-visible:outline-transparent max-sm:w-full"
               />
               <!-- <div
                 class=" h-auto w-auto rounded-lg border border-slate-300 px-4 py-2"
@@ -235,7 +293,7 @@
                 name="faculty"
                 id="faculty"
                 bind:value={emailDomain}
-                class="flex-auto rounded-xl border border-slate-300 px-3 py-3 focus-within:outline-orange-200"
+                class="flex-auto rounded-lg border-2 border-slate-300 px-3 py-2 focus-within:outline-orange-200 max-sm:w-full"
               >
                 <option value="@westcliff.edu">@westcliff.edu</option>
                 <option value="@gmail.com">@gmail.com</option>
@@ -243,10 +301,10 @@
               <!-- </div> -->
             </div>
             <div
-              class="flex flex-row items-center rounded-xl border border-slate-300 px-1 py-1 focus-within:border-transparent focus-within:outline focus-within:outline-2 focus-within:outline-orange-200"
+              class="flex flex-row items-center rounded-xl border border-slate-300 bg-slate-50 px-1 py-1 focus-within:border-transparent focus-within:outline focus-within:outline-2 focus-within:outline-orange-200"
             >
               <div
-                class=" mr-1 h-auto w-auto rounded-lg border border-slate-300 px-4 py-2"
+                class="mr-1 h-auto w-auto rounded-lg border-2 border-slate-300 px-4 py-2"
               >
                 +977
               </div>
@@ -266,7 +324,7 @@
       {#if slideNumber === 0}
         <button
           disabled={paymentOptions === "Esewa" && base64String == ""}
-          class="w-full rounded-lg bg-orange-400 px-4 py-2 text-white hover:bg-orange-500 {paymentOptions ===
+          class="w-full rounded-lg bg-orange-500 px-4 py-2 text-white hover:bg-orange-500 {paymentOptions ===
             'Esewa' && base64String == ''
             ? 'cursor-not-allowed'
             : ''}"
@@ -281,7 +339,7 @@
       {:else}
         <button
           type="submit"
-          class="w-full rounded-lg bg-orange-400 px-4 py-2 text-white hover:bg-orange-500"
+          class="w-full rounded-lg bg-orange-500 px-4 py-2 text-white hover:bg-orange-500"
           >Register Now</button
         >
       {/if}

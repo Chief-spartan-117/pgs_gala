@@ -8,4 +8,6 @@
   </title>
 </svelte:head>
 
-<h1>This is main page</h1>
+<div class="relative z-10">
+  <h1 class="text-5xl text-white">This is main page</h1>
+</div>
