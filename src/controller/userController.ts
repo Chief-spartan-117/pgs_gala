@@ -106,6 +106,7 @@ export const updateUsers = catchAsync(
         if (paymentSlip.mimetype.split("/")[0] === "image") {
           const newFileName = `${
             user.firstName
+            // @ts-ignore
           }_${Date.now()}_paymentSlip${paymentSlip!.mimetype.replace(
             "image/",
             "."
@@ -129,13 +130,17 @@ export const updateUsers = catchAsync(
                   paymentStatus: "PAID",
                 },
               });
-              return res.json("File Uploaded successfully");
+              return res.json({
+                status: "success",
+                message: "User Registered Successfully",
+              });
             }
           });
           // @ts-ignore
         } else if (paymentSlip.mimetype === "application/pdf") {
           const newFileName = `${
             user.firstName
+            // @ts-ignore
           }_${Date.now()}_paymentSlip${paymentSlip!.mimetype.replace(
             "application/",
             "."
@@ -159,7 +164,10 @@ export const updateUsers = catchAsync(
                   paymentStatus: "PAID",
                 },
               });
-              return res.json("File Uploaded successfully");
+              return res.json({
+                status: "success",
+                message: "User Registered Successfully",
+              });
             }
           });
         } else {
@@ -184,7 +192,7 @@ export const updateUsers = catchAsync(
         return next(new AppError("You have already submitted the slip", 403));
       }
     } else {
-      return res.json(user);
+      return res.json("You are Registered to the event.");
     }
   }
 );
