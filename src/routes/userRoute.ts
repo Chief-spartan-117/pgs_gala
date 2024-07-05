@@ -95,7 +95,6 @@ router.post(
       .trim()
       .isLength({ min: 8, max: 8 })
       .escape(),
-    body("faculty", "Faculty does not match").trim().escape(),
   ],
   getUsersDetail
 );
