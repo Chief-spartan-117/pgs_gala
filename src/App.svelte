@@ -8,7 +8,7 @@
 </script>
 
 <Router>
-  <header
+  <!-- <header
     class="mx-16 my-3 rounded-full border border-slate-200 px-2 py-2 max-md:mx-4 max-md:px-1 max-md:py-2"
   >
     <nav class="flex items-center justify-between gap-8 max-md:gap-4">
@@ -36,7 +36,7 @@
         </ul>
       </div>
     </nav>
-  </header>
+  </header> -->
 
   <Route path="/"><Main /></Route>
   <Route path="/register"><Form></Form></Route>

@@ -578,6 +578,10 @@ body {
   --tw-contain-style:  ;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
@@ -616,6 +620,38 @@ body {
   margin-top: 0.5rem;
 }
 
+.-mb-2 {
+  margin-bottom: -0.5rem;
+}
+
+.-mb-10 {
+  margin-bottom: -2.5rem;
+}
+
+.-mb-5 {
+  margin-bottom: -1.25rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.-mt-2 {
+  margin-top: -0.5rem;
+}
+
+.mt-7 {
+  margin-top: 1.75rem;
+}
+
+.-ml-2 {
+  margin-left: -0.5rem;
+}
+
 .flex {
   display: flex;
 }
@@ -640,6 +676,18 @@ body {
   height: 100%;
 }
 
+.h-screen {
+  height: 100vh;
+}
+
+.h-96 {
+  height: 24rem;
+}
+
+.h-\[500px\] {
+  height: 500px;
+}
+
 .w-36 {
   width: 9rem;
 }
@@ -658,6 +706,10 @@ body {
 
 .w-full {
   width: 100%;
+}
+
+.w-screen {
+  width: 100vw;
 }
 
 .flex-auto {
@@ -706,6 +758,10 @@ body {
 
 .gap-8 {
   gap: 2rem;
+}
+
+.gap-6 {
+  gap: 1.5rem;
 }
 
 .gap-y-4 {
@@ -819,6 +875,36 @@ body {
   line-height: 2.25rem;
 }
 
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -867,6 +953,10 @@ body {
   .sm\:my-8 {
     margin-top: 2rem;
     margin-bottom: 2rem;
+  }
+
+  .sm\:h-\[500px\] {
+    height: 500px;
   }
 
   .sm\:w-72 {
