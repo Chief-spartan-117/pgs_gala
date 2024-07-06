@@ -43,7 +43,7 @@
   </Router>
 </div>
 
-<style>
+<!-- <style>
   .dotbg {
     background-image: radial-gradient(
       rgba(255, 255, 255, 0.3) 6%,
@@ -62,4 +62,4 @@
       rgba(99, 57, 11, 0.8) 100%
     );
   }
-</style>
+</style> -->

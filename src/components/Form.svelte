@@ -70,16 +70,6 @@
     formData.append("phoneNumber", phoneNumber);
     formData.append("paymentMethod", paymentOptions);
 
-    // const response = await axios.post(
-    //   "http://localhost:3000/register?eventId=1",
-    //   formData,
-    //   {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //   },
-    // );
-    // console.log(response.data);
     try {
       const response = await fetch("http://localhost:3000/register?eventId=1", {
         method: "POST",
@@ -89,24 +79,16 @@
       if (response.ok) {
         const responseData = await response.json();
         responseMessage = responseData;
-        console.log("User Registered Successfully", responseMessage);
+        // console.log("User Registered Successfully", responseMessage);
       } else {
         const errorData = await response.json();
         responseMessage = errorData;
-        console.error("File upload failed", responseMessage);
+        // console.error("File upload failed", responseMessage);
       }
-      // console.log(responseMessage);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       responseMessage = "An unexpected error occurred.";
     }
-    // finally {
-    //   showResponseMessage = true;
-    //   setTimeout(() => {
-    //     showResponseMessage = false;
-    //   }, 2000);
-    // }
-    console.log(responseMessage);
   }
 
   function fileUpload(event) {
@@ -188,13 +170,13 @@
       <div
       class="max-md:2 w-[32rem] rounded-2xl bg-blue-950 px-8 py-6 shadow-[0_0_2rem_0.5rem_rgba(0,0,0,0.05)] max-sm:w-full max-sm:px-3 "
     >
-        <h1 class="mb-8 mt-2 text-center text-3xl font-bold text-white">
-          Registration Form
-        </h1>
+      <h1 class="mb-8 mt-2 text-center text-3xl font-bold text-white">
+        Registration Form
+      </h1>
       <form
         enctype="multipart/form-data"
         on:submit={submitForm}
-        class="flex flex-col gap-y-6 "
+        class="flex flex-col gap-y-6"
       >
         <Flicking
           bind:this={flicking}

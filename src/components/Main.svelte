@@ -40,8 +40,14 @@
   </title>
 </svelte:head>
 
-<div class="w-screen h-screen" style="background-color: #05103A; overflow: hidden;">
-  <div class="w-full h-full flex justify-center items-center  text-white" style="background: url({background}); background-size: cover; background-position: center; display: flex; flex-direction: column;">
+<div
+  class="h-screen w-screen"
+  style="background-color: #05103A; overflow: hidden;"
+>
+  <div
+    class="flex h-full w-full items-center justify-center text-white"
+    style="background: url({background}); background-size: cover; background-position: center; display: flex; flex-direction: column;"
+  >
     <!-- svelte-ignore a11y-missing-attribute -->
     <img
       class="-ml-2 mt-8 lg:w-96 xl:w-[27rem] max-lg:w-96 max-sm:w-72"
