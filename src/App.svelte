@@ -10,7 +10,7 @@
 <div class="h-screen bg-[rgb(5_16_58)]">
   <Router>
     <header
-      class="relative z-20 mb-3 w-full px-16 pb-2 pt-6 max-lg:px-8
+      class="fixed top-0 z-20 mb-3 w-full px-16 pb-2 pt-6 max-lg:px-8
        max-md:flex max-md:w-full max-md:px-4"
     >
       <nav class="flex w-full items-center justify-between gap-8 max-md:gap-4">
@@ -40,7 +40,6 @@
     <Route path="/"><Main /></Route>
     <Route path="/register"><Form></Form></Route>
   </Router>
-  <div class="dotbg"></div>
 </div>
 
 <style>

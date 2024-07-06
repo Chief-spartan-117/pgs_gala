@@ -3,6 +3,7 @@
   import WiCloudUp from "svelte-icons/wi/WiCloudUp.svelte";
   import MdError from "svelte-icons/md/MdError.svelte";
   import MdCheckCircle from "svelte-icons/md/MdCheckCircle.svelte";
+  import background from "../assets/gala_background.png";
 
   import "@egjs/svelte-flicking/dist/flicking.css";
   import Flicking, { FlickingPanel } from "@egjs/svelte-flicking";
@@ -158,209 +159,212 @@
 {/if}
 
 <div
-  class="item-center relative z-10 flex h-screen justify-center sm:my-8 md:my-12"
-  style="overflow: auto"
+  class="h-screen w-screen"
+  style="background-color: #05103A; overflow: hidden;"
 >
   <div
-    class="max-md:2 w-[32rem] rounded-2xl bg-blue-950 px-8 py-6 shadow-[0_0_2rem_0.5rem_rgba(0,0,0,0.05)] max-sm:w-full max-sm:px-3"
+    class="flex h-full w-full items-center justify-center"
+    style="background: url({background}); background-size: cover; background-position: center; display: flex; flex-direction: column;"
   >
-    <div>
+    <div
+      class="max-md:2 w-[32rem] rounded-2xl bg-blue-950 px-8 py-6 shadow-[0_0_2rem_0.5rem_rgba(0,0,0,0.05)] max-sm:w-full max-sm:px-3"
+    >
       <h1 class="mb-8 mt-2 text-center text-3xl font-bold text-white">
         Registration Form
       </h1>
-    </div>
-    <form
-      enctype="multipart/form-data"
-      on:submit={submitForm}
-      class="flex flex-col gap-y-6"
-    >
-      <Flicking
-        bind:this={flicking}
-        options={{
-          panelsPerView: 1,
-          circular: false,
-          align: "next",
-          inputType: [],
-        }}
+      <form
+        enctype="multipart/form-data"
+        on:submit={submitForm}
+        class="flex flex-col gap-y-6"
       >
-        <FlickingPanel>
-          <div class="flex flex-col gap-y-4 text-center">
-            <label for="paymentOptions" class="flex flex-col gap-2">
-              <p class="text-white">Choose Your Payment Options</p>
-              <select
-                class="rounded-lg border border-slate-200 px-2 py-2"
-                bind:value={paymentOptions}
-                on:change={() => {
-                  change_payment();
-                }}
-              >
-                <option value="Esewa">Pay With Esewa</option>
-                <option value="Cash">Pay With Cash</option>
-              </select>
-            </label>
-            {#if paymentOptions == "Esewa"}
-              <div class="flex justify-center">
-                <img src={asip} class="w-full sm:w-72" alt="" srcset="" />
-              </div>
-              <div>
-                <label
-                  for="payment"
-                  class=" relative flex h-36 flex-auto cursor-pointer items-center justify-center rounded-2xl border border-dashed border-orange-400 bg-slate-50/15"
-                  on:dragover|preventDefault
-                  on:drop|preventDefault={(e) => fileUpload(e)}
+        <Flicking
+          bind:this={flicking}
+          options={{
+            panelsPerView: 1,
+            circular: false,
+            align: "next",
+            inputType: [],
+          }}
+        >
+          <FlickingPanel>
+            <div class="flex flex-col gap-y-4 text-center">
+              <label for="paymentOptions" class="flex flex-col gap-2">
+                <p class="text-white">Choose Your Payment Options</p>
+                <select
+                  class="rounded-lg border border-slate-200 px-2 py-2"
+                  bind:value={paymentOptions}
+                  on:change={() => {
+                    change_payment();
+                  }}
+                >
+                  <option value="Esewa">Pay With Esewa</option>
+                  <option value="Cash">Pay With Cash</option>
+                </select>
+              </label>
+              {#if paymentOptions == "Esewa"}
+                <div class="flex justify-center">
+                  <img src={asip} class="w-full sm:w-72" alt="" srcset="" />
+                </div>
+                <div>
+                  <label
+                    for="payment"
+                    class=" relative flex h-36 flex-auto cursor-pointer items-center justify-center rounded-2xl border border-dashed border-orange-400 bg-slate-50/15"
+                    on:dragover|preventDefault
+                    on:drop|preventDefault={(e) => fileUpload(e)}
+                  >
+                    <div
+                      class=" absolute h-36 w-full rounded-xl opacity-60"
+                      style="background-image: url({base64String}); background-position: center; background-size: cover; background-repeat: no-repeat;"
+                    ></div>
+                    <input
+                      class="payment absolute top-0 cursor-pointer"
+                      type="file"
+                      name="file"
+                      id="payment"
+                      accept="image/*,.pdf"
+                      on:change={fileUpload}
+                      hidden
+                      bind:this={root}
+                    />
+                    <div class="h-8 w-8 text-white">
+                      <WiCloudUp />
+                    </div>
+                    <p class="text-white">Upload Payment Screenshot</p>
+                  </label>
+                  <div><h6 class="text-white">{fileName}</h6></div>
+                </div>
+              {:else}
+                <div>
+                  <img src={galaLogo} alt="Logo" class="w-full" />
+                </div>
+              {/if}
+            </div>
+          </FlickingPanel>
+          <FlickingPanel>
+            <div class="flex h-full flex-col justify-center gap-y-4 px-2 py-2">
+              <div class="flex flex-row justify-between gap-4 max-md:flex-col">
+                <!-- Roll no -->
+                <div
+                  class="flex flex-auto flex-row items-center rounded-xl border border-slate-300 bg-slate-50 px-1 py-1 focus-within:border-transparent focus-within:outline focus-within:outline-2 focus-within:outline-orange-200"
                 >
                   <div
-                    class=" absolute h-36 w-full rounded-xl opacity-60"
-                    style="background-image: url({base64String}); background-position: center; background-size: cover; background-repeat: no-repeat;"
-                  ></div>
-                  <input
-                    class="payment absolute top-0 cursor-pointer"
-                    type="file"
-                    name="file"
-                    id="payment"
-                    accept="image/*,.pdf"
-                    on:change={fileUpload}
-                    hidden
-                    bind:this={root}
-                  />
-                  <div class="h-8 w-8 text-white">
-                    <WiCloudUp />
+                    class=" mr-1 h-auto w-auto rounded-lg border-2 border-slate-300 px-4 py-2"
+                  >
+                    BN
                   </div>
-                  <p class="text-white">Upload Payment Screenshot</p>
-                </label>
-                <div><h6 class="text-white">{fileName}</h6></div>
-              </div>
-            {:else}
-              <div>
-                <img src={galaLogo} alt="Logo" class="w-full" />
-              </div>
-            {/if}
-          </div>
-        </FlickingPanel>
-        <FlickingPanel>
-          <div class="flex h-full flex-col justify-end gap-y-4 px-2 py-2">
-            <div class="flex flex-row justify-between gap-4 max-md:flex-col">
-              <!-- Roll no -->
-              <div
-                class="flex flex-auto flex-row items-center rounded-xl border border-slate-300 bg-slate-50 px-1 py-1 focus-within:border-transparent focus-within:outline focus-within:outline-2 focus-within:outline-orange-200"
-              >
-                <div
-                  class=" mr-1 h-auto w-auto rounded-lg border-2 border-slate-300 px-4 py-2"
-                >
-                  BN
+
+                  <input
+                    type="number"
+                    name="rollNo"
+                    id="rollNo"
+                    bind:value={rollNo}
+                    on:input={() => getUserInfo()}
+                    placeholder="Roll No"
+                    class="scroll-remove flex-auto rounded-xl px-2 py-2 focus-visible:outline-transparent"
+                  />
                 </div>
-
-                <input
-                  type="number"
-                  name="rollNo"
-                  id="rollNo"
-                  bind:value={rollNo}
-                  on:input={() => getUserInfo()}
-                  placeholder="Roll No"
-                  class="scroll-remove flex-auto rounded-xl px-2 py-2 focus-visible:outline-transparent"
-                />
+                <!-- Roll No -->
+                <select
+                  name="faculty"
+                  id="faculty"
+                  bind:value={faculty}
+                  disabled
+                  class="flex-auto rounded-xl border border-slate-300 px-3 py-3 focus-within:outline-orange-200"
+                >
+                  <option value="BSIT" selected>BSIT</option>
+                  <option value="BBA">BBA</option>
+                  <option value="MSIT">MSIT</option>
+                  <option value="MBA">MBA</option>
+                </select>
               </div>
-              <!-- Roll No -->
-              <select
-                name="faculty"
-                id="faculty"
-                bind:value={faculty}
-                disabled
-                class="flex-auto rounded-xl border border-slate-300 px-3 py-3 focus-within:outline-orange-200"
-              >
-                <option value="BSIT" selected>BSIT</option>
-                <option value="BBA">BBA</option>
-                <option value="MSIT">MSIT</option>
-                <option value="MBA">MBA</option>
-              </select>
-            </div>
 
-            <input
-              type="text"
-              name="firstName"
-              id="firstName"
-              placeholder="First Name"
-              bind:value={firstName}
-              disabled
-              class="flex-auto rounded-xl border border-slate-300 px-3 py-3 focus-within:outline-orange-200"
-            />
-            <input
-              type="text"
-              name="lastName"
-              id="lastName"
-              placeholder="Last Name"
-              bind:value={lastName}
-              disabled
-              class="flex-auto rounded-xl border border-slate-300 px-3 py-3 focus-within:outline-orange-200"
-            />
-            <div
-              class="flex flex-row items-center rounded-xl border border-slate-300 bg-slate-50 px-1 py-1 focus-within:border-transparent focus-within:outline focus-within:outline-2 focus-within:outline-orange-200 max-sm:flex-col"
-            >
               <input
                 type="text"
-                name="email"
-                bind:value={email}
-                placeholder="Email"
-                class="flex-auto rounded-xl px-2 py-2 focus-visible:outline-transparent max-sm:w-full"
+                name="firstName"
+                id="firstName"
+                placeholder="First Name"
+                bind:value={firstName}
+                disabled
+                class="rounded-xl border border-slate-300 px-3 py-3 focus-within:outline-orange-200"
               />
-              <!-- <div
+              <input
+                type="text"
+                name="lastName"
+                id="lastName"
+                placeholder="Last Name"
+                bind:value={lastName}
+                disabled
+                class="rounded-xl border border-slate-300 px-3 py-3 focus-within:outline-orange-200"
+              />
+              <div
+                class="flex flex-row items-center rounded-xl border border-slate-300 bg-slate-50 px-1 py-1 focus-within:border-transparent focus-within:outline focus-within:outline-2 focus-within:outline-orange-200 max-sm:flex-col"
+              >
+                <input
+                  type="text"
+                  name="email"
+                  bind:value={email}
+                  placeholder="Email"
+                  class="flex-auto rounded-xl px-2 py-2 focus-visible:outline-transparent max-sm:w-full"
+                />
+                <!-- <div
                 class=" h-auto w-auto rounded-lg border border-slate-300 px-4 py-2"
               > -->
-              <select
-                name="faculty"
-                id="faculty"
-                bind:value={emailDomain}
-                class="flex-auto rounded-lg border-2 border-slate-300 px-3 py-2 focus-within:outline-orange-200 max-sm:w-full"
-              >
-                <option value="@westcliff.edu">@westcliff.edu</option>
-                <option value="@gmail.com">@gmail.com</option>
-              </select>
-              <!-- </div> -->
-            </div>
-            <div
-              class="flex flex-row items-center rounded-xl border border-slate-300 bg-slate-50 px-1 py-1 focus-within:border-transparent focus-within:outline focus-within:outline-2 focus-within:outline-orange-200"
-            >
-              <div
-                class="mr-1 h-auto w-auto rounded-lg border-2 border-slate-300 px-4 py-2"
-              >
-                +977
+                <select
+                  name="faculty"
+                  id="faculty"
+                  bind:value={emailDomain}
+                  class="flex-auto rounded-lg border-2 border-slate-300 px-3 py-2 focus-within:outline-orange-200 max-sm:w-full"
+                >
+                  <option value="@westcliff.edu">@westcliff.edu</option>
+                  <option value="@gmail.com">@gmail.com</option>
+                </select>
+                <!-- </div> -->
               </div>
-              <input
-                type="number"
-                name="phoneNumber"
-                id="phoneNumber"
-                placeholder="Phone Number"
-                bind:value={phoneNumber}
-                class=" scroll-remove flex-auto rounded-xl px-2 py-2 focus-visible:outline-transparent"
-              />
+              <div
+                class="flex flex-row items-center rounded-xl border border-slate-300 bg-slate-50 px-1 py-1 focus-within:border-transparent focus-within:outline focus-within:outline-2 focus-within:outline-orange-200"
+              >
+                <div
+                  class="mr-1 h-auto w-auto rounded-lg border-2 border-slate-300 px-4 py-2"
+                >
+                  +977
+                </div>
+                <input
+                  type="number"
+                  name="phoneNumber"
+                  id="phoneNumber"
+                  placeholder="Phone Number"
+                  bind:value={phoneNumber}
+                  class=" scroll-remove flex-auto rounded-xl px-2 py-2 focus-visible:outline-transparent"
+                />
+              </div>
             </div>
-          </div>
-        </FlickingPanel>
-      </Flicking>
+          </FlickingPanel>
+        </Flicking>
 
-      {#if slideNumber === 0}
-        <button
-          disabled={paymentOptions === "Esewa" && base64String == ""}
-          class="w-full rounded-lg bg-orange-500 px-4 py-2 text-white hover:bg-orange-500 {paymentOptions ===
-            'Esewa' && base64String == ''
-            ? 'cursor-not-allowed'
-            : ''}"
-          on:click={() => {
-            flicking.next();
-            slideNumber = 1;
-          }}
-          >{paymentOptions === "Esewa" && base64String == ""
-            ? "Upload Screenshot to Unlock"
-            : "Next"}</button
-        >
-      {:else}
-        <button
-          type="submit"
-          class="w-full rounded-lg bg-orange-500 px-4 py-2 text-white hover:bg-orange-500"
-          >Register Now</button
-        >
-      {/if}
-    </form>
+        {#if slideNumber === 0}
+          <button
+            disabled={paymentOptions === "Esewa" && base64String == ""}
+            class="w-full rounded-lg bg-orange-500 px-4 py-2 text-white hover:bg-orange-500 {paymentOptions ===
+              'Esewa' && base64String == ''
+              ? 'cursor-not-allowed'
+              : ''}"
+            on:click={() => {
+              flicking.next();
+              slideNumber = 1;
+            }}
+            >{paymentOptions === "Esewa" && base64String == ""
+              ? "Upload Screenshot to Unlock"
+              : "Next"}</button
+          >
+        {:else}
+          <button
+            type="submit"
+            class="w-full rounded-lg bg-orange-500 px-4 py-2 text-white hover:bg-orange-500"
+            >Register Now</button
+          >
+        {/if}
+      </form>
+    </div>
   </div>
 </div>
 
