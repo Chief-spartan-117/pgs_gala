@@ -166,17 +166,17 @@
     class="flex h-full w-full items-center justify-center"
     style="background: url({background}); background-size: cover; background-position: center; display: flex; flex-direction: column;"
   >
-    <div class="w-full h-full overflow-auto py-20 flex justify-center">
+    <div class="w-full h-full overflow-auto pt-20 pb-20 flex justify-center">
       <div
-      class="max-md:2 w-[32rem] rounded-2xl bg-blue-950 px-8 py-6 shadow-[0_0_2rem_0.5rem_rgba(0,0,0,0.05)] max-sm:w-full max-sm:px-3 "
+      class="max-md:2 w-[32rem] rounded-2xl bg-blue-950 shadow-[0_0_2rem_0.5rem_rgba(0,0,0,0.05)] max-sm:w-full "
     >
-      <h1 class="mb-8 mt-2 text-center text-3xl font-bold text-white">
+      <h1 class="mb-8 mt-6 text-center text-3xl font-bold text-white">
         Registration Form
       </h1>
       <form
         enctype="multipart/form-data"
         on:submit={submitForm}
-        class="flex flex-col gap-y-6"
+        class="flex flex-col gap-y-6 rounded-2xl px-8 py-6 bg-blue-950 shadow-[0_0_2rem_0.5rem_rgba(0,0,0,0.05)] max-sm:px-3 "
       >
         <Flicking
           bind:this={flicking}
