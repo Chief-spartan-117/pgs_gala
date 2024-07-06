@@ -3,27 +3,31 @@
   import mask from "../assets/gala_mask.png";
   import galaText from "../assets/img/Gala.png";
   import tippy from "../actions/tippy";
+  import pbs from "../assets/dev/pbs_logo.png";
+  import sairash from "../assets/dev/sairash.jpg";
+  import sagar from "../assets/dev/sagar.jpg";
+  import prasun from "../assets/dev/pbs_logo.png";
 
   const devs = [
     {
       id: 1,
       name: "PBS Web & Application Development Club",
-      img: "/src/assets/img/dev/pbs_logo.png",
+      img: pbs,
     },
     {
       id: 2,
       name: "Sairash Gautam",
-      img: "/src/assets/img/dev/sairash.jpg",
+      img: sairash,
     },
     {
       id: 3,
       name: "Sagar Shrestha",
-      img: "/src/assets/img/dev/sagar.jpg",
+      img: sagar,
     },
     {
       id: 4,
-      name: "Sagar",
-      img: "/src/assets/img/dev/sagar.jpg",
+      name: "Prasun Ghimire",
+      img: prasun,
     },
   ];
 </script>
