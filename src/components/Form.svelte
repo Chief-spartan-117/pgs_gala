@@ -124,6 +124,12 @@
       showResponseMessage = false;
     }, 5000);
   }
+
+  function preventTab(event) {
+    if (event.key === "Tab") {
+      event.preventDefault();
+    }
+  }
 </script>
 
 <svelte:head>
@@ -200,6 +206,7 @@
                     on:change={() => {
                       change_payment();
                     }}
+                    on:keydown|preventDefault={preventTab}
                   >
                     <option value="Esewa">Pay With Esewa</option>
                     <option value="Cash">Pay With Cash</option>
@@ -272,6 +279,7 @@
                       on:input={() => getUserInfo()}
                       placeholder="Roll No"
                       class="scroll-remove flex-auto rounded-xl px-2 py-2 focus-visible:outline-transparent"
+                      on:keydown|preventDefault={preventTab}
                     />
                   </div>
                   <!-- Roll No -->
@@ -281,6 +289,7 @@
                     bind:value={faculty}
                     disabled
                     class="flex-auto rounded-xl border border-slate-300 px-3 py-3 focus-within:outline-orange-200"
+                    on:keydown|preventDefault={preventTab}
                   >
                     <option value="BSIT" selected>BSIT</option>
                     <option value="BBA">BBA</option>
