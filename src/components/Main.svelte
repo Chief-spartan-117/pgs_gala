@@ -7,26 +7,21 @@
   const devs = [
     {
       id: 1,
-      name: "Sagar",
-      img: "/src/assets/img/dev/sagar.jpg",
+      name: "PBS Web & Application Development Club",
+      img: "/src/assets/img/dev/pbs_logo.png",
     },
     {
       id: 2,
+      name: "Sairash Gautam",
+      img: "/src/assets/img/dev/sairash.jpg",
+    },
+    {
+      id: 3,
       name: "Sagar Shrestha",
       img: "/src/assets/img/dev/sagar.jpg",
     },
     {
-      id: 3,
-      name: "Sagar",
-      img: "/src/assets/img/dev/sagar.jpg",
-    },
-    {
       id: 4,
-      name: "Sagar",
-      img: "/src/assets/img/dev/sagar.jpg",
-    },
-    {
-      id: 5,
       name: "Sagar",
       img: "/src/assets/img/dev/sagar.jpg",
     },
