@@ -69,16 +69,6 @@
     formData.append("phoneNumber", phoneNumber);
     formData.append("paymentMethod", paymentOptions);
 
-    // const response = await axios.post(
-    //   "http://localhost:3000/register?eventId=1",
-    //   formData,
-    //   {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //   },
-    // );
-    // console.log(response.data);
     try {
       const response = await fetch("http://localhost:3000/register?eventId=1", {
         method: "POST",
@@ -88,24 +78,16 @@
       if (response.ok) {
         const responseData = await response.json();
         responseMessage = responseData;
-        console.log("User Registered Successfully", responseMessage);
+        // console.log("User Registered Successfully", responseMessage);
       } else {
         const errorData = await response.json();
         responseMessage = errorData;
-        console.error("File upload failed", responseMessage);
+        // console.error("File upload failed", responseMessage);
       }
-      // console.log(responseMessage);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       responseMessage = "An unexpected error occurred.";
     }
-    // finally {
-    //   showResponseMessage = true;
-    //   setTimeout(() => {
-    //     showResponseMessage = false;
-    //   }, 2000);
-    // }
-    console.log(responseMessage);
   }
 
   function fileUpload(event) {
@@ -176,7 +158,7 @@
 {/if}
 
 <div
-  class="item-center z-10 flex h-screen w-screen justify-center sm:my-8 md:my-12"
+  class="item-center relative z-10 flex h-screen justify-center sm:my-8 md:my-12"
   style="overflow: auto"
 >
   <div
