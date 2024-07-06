@@ -12,6 +12,7 @@
     <header
       class="fixed top-0 z-20 mb-3 w-full px-16 pb-2 pt-6 max-lg:px-8
        max-md:flex max-md:w-full max-md:px-4"
+       style="backdrop-filter: blur(20px);"
     >
       <nav class="flex w-full items-center justify-between gap-8 max-md:gap-4">
         <div>

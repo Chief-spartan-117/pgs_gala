@@ -455,12 +455,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-BoldItalic.eot');
-
-  src: local('Cadiz Bold Italic'), local('Cadiz-BoldItalic'),
-        url('Cadiz-BoldItalic.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-BoldItalic.ttf") format("truetype");
 
   font-weight: bold;
 
@@ -468,12 +465,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-Black.eot');
-
-  src: local('Cadiz Black'), local('Cadiz-Black'),
-        url('Cadiz-Black.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-Black.ttf") format("truetype");
 
   font-weight: 900;
 
@@ -481,12 +475,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-BlackItalic.eot');
-
-  src: local('Cadiz Black Italic'), local('Cadiz-BlackItalic'),
-        url('Cadiz-BlackItalic.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-BlackItalic.ttf") format("truetype");
 
   font-weight: 900;
 
@@ -494,12 +485,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-SemiBoldItalic.eot');
-
-  src: local('Cadiz SemiBold Italic'), local('Cadiz-SemiBoldItalic'),
-        url('Cadiz-SemiBoldItalic.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-SemiBoldItalic.ttf") format("truetype");
 
   font-weight: 600;
 
@@ -507,12 +495,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-LightItalic.eot');
-
-  src: local('Cadiz Light Italic'), local('Cadiz-LightItalic'),
-        url('Cadiz-LightItalic.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-LightItalic.ttf") format("truetype");
 
   font-weight: 300;
 
@@ -520,12 +505,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-ExtraBold.eot');
-
-  src: local('Cadiz ExtraBold'), local('Cadiz-ExtraBold'),
-        url('Cadiz-ExtraBold.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-ExtraBold.ttf") format("truetype");
 
   font-weight: 800;
 
@@ -533,12 +515,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-Italic.eot');
-
-  src: local('Cadiz Italic'), local('Cadiz-Italic'),
-        url('Cadiz-Italic.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-Italic.ttf") format("truetype");
 
   font-weight: normal;
 
@@ -546,12 +525,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz Ultra';
+  font-family: "Cadiz Ultra";
 
-  src: url('Cadiz-UltraItalic.eot');
-
-  src: local('Cadiz Ultra Italic'), local('Cadiz-UltraItalic'),
-        url('Cadiz-UltraItalic.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-UltraItalic.ttf") format("truetype");
 
   font-weight: normal;
 
@@ -559,12 +535,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-Bold.eot');
-
-  src: local('Cadiz Bold'), local('Cadiz-Bold'),
-        url('Cadiz-Bold.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-Bold.ttf") format("truetype");
 
   font-weight: bold;
 
@@ -572,12 +545,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-ThinItalic.eot');
-
-  src: local('Cadiz Thin Italic'), local('Cadiz-ThinItalic'),
-        url('Cadiz-ThinItalic.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-ThinItalic.ttf") format("truetype");
 
   font-weight: 100;
 
@@ -585,12 +555,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-ExtraBoldItalic.eot');
-
-  src: local('Cadiz ExtraBold Italic'), local('Cadiz-ExtraBoldItalic'),
-        url('Cadiz-ExtraBoldItalic.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-ExtraBoldItalic.ttf") format("truetype");
 
   font-weight: 800;
 
@@ -598,12 +565,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-Thin.eot');
-
-  src: local('Cadiz Thin'), local('Cadiz-Thin'),
-        url('Cadiz-Thin.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-Thin.ttf") format("truetype");
 
   font-weight: 100;
 
@@ -611,12 +575,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-MediumItalic.eot');
-
-  src: local('Cadiz Medium Italic'), local('Cadiz-MediumItalic'),
-        url('Cadiz-MediumItalic.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-MediumItalic.ttf") format("truetype");
 
   font-weight: 500;
 
@@ -624,12 +585,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz Ultra';
+  font-family: "Cadiz Ultra";
 
-  src: url('Cadiz-Ultra.eot');
-
-  src: local('Cadiz Ultra'), local('Cadiz-Ultra'),
-        url('Cadiz-Ultra.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-Ultra.ttf") format("truetype");
 
   font-weight: normal;
 
@@ -637,12 +595,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-Medium.eot');
-
-  src: local('Cadiz Medium'), local('Cadiz-Medium'),
-        url('Cadiz-Medium.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-Medium.ttf") format("truetype");
 
   font-weight: 500;
 
@@ -650,12 +605,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-SemiBold.eot');
-
-  src: local('Cadiz SemiBold'), local('Cadiz-SemiBold'),
-        url('Cadiz-SemiBold.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-SemiBold.ttf") format("truetype");
 
   font-weight: 600;
 
@@ -663,12 +615,10 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-ExtraLightItalic.eot');
-
-  src: local('Cadiz ExtraLight Italic'), local('Cadiz-ExtraLightItalic'),
-        url('Cadiz-ExtraLightItalic.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-ExtraLightItalic.ttf")
+      format("truetype");
 
   font-weight: 200;
 
@@ -676,12 +626,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-ExtraLight.eot');
-
-  src: local('Cadiz ExtraLight'), local('Cadiz-ExtraLight'),
-        url('Cadiz-ExtraLight.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-ExtraLight.ttf") format("truetype");
 
   font-weight: 200;
 
@@ -689,12 +636,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-Regular.eot');
-
-  src: local('Cadiz'), local('Cadiz-Regular'),
-        url('Cadiz-Regular.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-Regular.ttf") format("truetype");
 
   font-weight: normal;
 
@@ -702,12 +646,9 @@ video {
 }
 
 @font-face {
-  font-family: 'Cadiz';
+  font-family: "Cadiz";
 
-  src: url('Cadiz-Light.eot');
-
-  src: local('Cadiz Light'), local('Cadiz-Light'),
-        url('Cadiz-Light.ttf') format('truetype');
+  src: url("./assets/font/cadiz/Cadiz-Light.ttf") format("truetype");
 
   font-weight: 300;
 
@@ -862,10 +803,6 @@ body {
   top: 0px;
 }
 
-.top-1\/2 {
-  top: 50%;
-}
-
 .top-10 {
   top: 2.5rem;
 }
@@ -930,6 +867,18 @@ body {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
 }
 
 .inline-block {
@@ -1018,11 +967,6 @@ body {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.-translate-y-\[55\%\] {
-  --tw-translate-y: -55%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .cursor-not-allowed {
   cursor: not-allowed;
 }
@@ -1045,10 +989,6 @@ body {
 
 .items-center {
   align-items: center;
-}
-
-.justify-end {
-  justify-content: flex-end;
 }
 
 .justify-center {
@@ -1084,8 +1024,14 @@ body {
   row-gap: 1.5rem;
 }
 
-.overflow-hidden {
+.overflow-auto {
+  overflow: auto;
+}
+
+.truncate {
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .rounded-2xl {
@@ -1266,6 +1212,11 @@ body {
   padding-bottom: 0.5rem;
 }
 
+.py-20 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -1282,6 +1233,14 @@ body {
 
 .pt-6 {
   padding-top: 1.5rem;
+}
+
+.pb-20 {
+  padding-bottom: 5rem;
+}
+
+.pt-20 {
+  padding-top: 5rem;
 }
 
 .text-center {
@@ -1358,6 +1317,16 @@ body {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.blur {
+  --tw-blur: blur(8px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.backdrop-filter {
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+          backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+
 .focus-within\:border-transparent:focus-within {
   border-color: transparent;
 }
@@ -1384,20 +1353,8 @@ body {
 }
 
 @media (min-width: 640px) {
-  .sm\:my-8 {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-  }
-
   .sm\:w-72 {
     width: 18rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .md\:my-12 {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
   }
 }
 
@@ -1532,10 +1489,6 @@ body {
     margin-top: -0.25rem;
   }
 
-  .max-sm\:mt-24 {
-    margin-top: 6rem;
-  }
-
   .max-sm\:w-28 {
     width: 7rem;
   }
@@ -1554,11 +1507,6 @@ body {
 
   .max-sm\:w-full {
     width: 100%;
-  }
-
-  .max-sm\:-translate-y-\[60\%\] {
-    --tw-translate-y: -60%;
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .max-sm\:flex-col {
