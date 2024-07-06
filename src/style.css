@@ -873,6 +873,14 @@ body {
   margin-top: 2rem;
 }
 
+.-mr-2 {
+  margin-right: -0.5rem;
+}
+
+.-mr-3 {
+  margin-right: -0.75rem;
+}
+
 .inline-block {
   display: inline-block;
 }
@@ -1054,8 +1062,8 @@ body {
   border-width: 2px;
 }
 
-.border-\[0\.2rem\] {
-  border-width: 0.2rem;
+.border-\[0\.1rem\] {
+  border-width: 0.1rem;
 }
 
 .border-b-4 {
@@ -1248,11 +1256,6 @@ body {
   line-height: 2.5rem;
 }
 
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
-}
-
 .text-6xl {
   font-size: 3.75rem;
   line-height: 1;
@@ -1407,6 +1410,10 @@ body {
 
   .max-md\:ml-1 {
     margin-left: 0.25rem;
+  }
+
+  .max-md\:-mr-2 {
+    margin-right: -0.5rem;
   }
 
   .max-md\:flex {

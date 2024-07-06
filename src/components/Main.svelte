@@ -6,7 +6,7 @@
   import pbs from "../assets/dev/pbs_logo.png";
   import sairash from "../assets/dev/sairash.jpg";
   import sagar from "../assets/dev/sagar.jpg";
-  import prasun from "../assets/dev/pbs_logo.png";
+  import prasun from "../assets/dev/prasun.png";
 
   const devs = [
     {
@@ -84,13 +84,13 @@
       <div class="flex flex-row items-center">
         {#each devs as dev, index (dev.id)}
           <div
-            class="relative -mr-4 rounded-full max-md:-mr-3"
+            class="relative -mr-3 rounded-full max-md:-mr-3"
             use:tippy={{ content: dev.name, placement: "top" }}
           >
             <img
               src={dev.img}
               alt={dev.name}
-              class="relative w-9 rounded-full border-[0.2rem] border-[rgb(5_16_58)] max-sm:w-7"
+              class="relative w-9 rounded-full border-[0.1rem] border-[rgb(5_16_58)] max-sm:w-7"
               style="z-index: {devs.length - index};"
             />
           </div>
