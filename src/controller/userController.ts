@@ -187,12 +187,18 @@ export const updateUsers = catchAsync(
             },
           })
           .then(() => {
-            return res.json("User Registerd Successfully");
+            return res.json({
+              status: "success",
+              message: "User Registerd Successfully",
+            });
           });
         return next(new AppError("You have already submitted the slip", 403));
       }
     } else {
-      return res.json("You are Registered to the event.");
+      return res.json({
+        status: "success",
+        message: "You are Registered to the event.",
+      });
     }
   }
 );
