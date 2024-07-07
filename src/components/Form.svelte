@@ -50,7 +50,7 @@
           lastName = user_data.lastName;
           faculty = user_data.faculty;
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
 
         timeout_val = 0;
@@ -114,9 +114,6 @@
       console.log("Invalid File type");
     }
   }
-  function change_payment() {
-    console.log(paymentOptions);
-  }
 
   function showMessage() {
     showResponseMessage = true;
@@ -143,7 +140,7 @@
   {#if responseMessage.status === "Fail" || responseMessage.status === "Error"}
     <!-- {showMessage()} -->
     <div
-      class="absolute left-1/2 top-10 z-10 flex -translate-x-1/2 flex-row items-center gap-x-2 rounded-md border-b-4 border-red-800 bg-red-300 px-4 py-2"
+      class="absolute left-1/2 top-10 z-40 flex -translate-x-1/2 flex-row items-center gap-x-2 rounded-md border-b-4 border-red-800 bg-red-300 px-4 py-2"
     >
       <div class="w-6 text-red-600">
         <MdError></MdError>
@@ -155,7 +152,7 @@
   {:else if responseMessage.status === "success"}
     <!-- {showMessage()} -->
     <div
-      class="absolute left-1/2 top-10 z-10 flex -translate-x-1/2 flex-row items-center gap-x-2 rounded-md border-b-4 border-green-800 bg-green-300 px-4 py-2"
+      class="absolute left-1/2 top-10 z-40 flex -translate-x-1/2 flex-row items-center gap-x-2 rounded-md border-b-4 border-green-800 bg-green-300 px-4 py-2"
     >
       <div class="w-6 text-green-600">
         <MdCheckCircle></MdCheckCircle>
@@ -203,10 +200,7 @@
                   <select
                     class="rounded-lg border border-slate-200 px-2 py-2"
                     bind:value={paymentOptions}
-                    on:change={() => {
-                      change_payment();
-                    }}
-                    on:keydown|preventDefault={preventTab}
+                    on:keydown={preventTab}
                   >
                     <option value="Esewa">Pay With Esewa</option>
                     <option value="Cash">Pay With Cash</option>
@@ -279,7 +273,7 @@
                       on:input={() => getUserInfo()}
                       placeholder="Roll No"
                       class="scroll-remove flex-auto rounded-xl px-2 py-2 focus-visible:outline-transparent"
-                      on:keydown|preventDefault={preventTab}
+                      on:keydown={preventTab}
                     />
                   </div>
                   <!-- Roll No -->
@@ -289,7 +283,7 @@
                     bind:value={faculty}
                     disabled
                     class="flex-auto rounded-xl border border-slate-300 px-3 py-3 focus-within:outline-orange-200"
-                    on:keydown|preventDefault={preventTab}
+                    on:keydown={preventTab}
                   >
                     <option value="BSIT" selected>BSIT</option>
                     <option value="BBA">BBA</option>
@@ -305,7 +299,7 @@
                   placeholder="First Name"
                   bind:value={firstName}
                   disabled
-                  class="rounded-xl border border-slate-300 px-3 py-3 focus-within:outline-orange-200"
+                  class="rounded-xl border border-slate-300 px-3 py-3 text-white focus-within:outline-orange-200"
                 />
                 <input
                   type="text"
@@ -314,7 +308,7 @@
                   placeholder="Last Name"
                   bind:value={lastName}
                   disabled
-                  class="rounded-xl border border-slate-300 px-3 py-3 focus-within:outline-orange-200"
+                  class="rounded-xl border border-slate-300 px-3 py-3 text-white focus-within:outline-orange-200"
                 />
                 <div
                   class="flex flex-row items-center rounded-xl border border-slate-300 bg-slate-50 px-1 py-1 focus-within:border-transparent focus-within:outline focus-within:outline-2 focus-within:outline-orange-200 max-sm:flex-col"
