@@ -104,13 +104,12 @@ export const updateUsers = catchAsync(
       ) {
         // @ts-ignore
         if (paymentSlip.mimetype.split("/")[0] === "image") {
-          const newFileName = `${
-            user.firstName
+          const newFileName = `${user.firstName
             // @ts-ignore
-          }_${Date.now()}_paymentSlip${paymentSlip!.mimetype.replace(
-            "image/",
-            "."
-          )}`;
+            }_${Date.now()}_paymentSlip${paymentSlip!.mimetype.replace(
+              "image/",
+              "."
+            )}`;
 
           let uploadPath = path.join(__dirname, "..", "/public/") + newFileName;
 
@@ -138,13 +137,12 @@ export const updateUsers = catchAsync(
           });
           // @ts-ignore
         } else if (paymentSlip.mimetype === "application/pdf") {
-          const newFileName = `${
-            user.firstName
+          const newFileName = `${user.firstName
             // @ts-ignore
-          }_${Date.now()}_paymentSlip${paymentSlip!.mimetype.replace(
-            "application/",
-            "."
-          )}`;
+            }_${Date.now()}_paymentSlip${paymentSlip!.mimetype.replace(
+              "application/",
+              "."
+            )}`;
 
           let uploadPath = path.join(__dirname, "..", "/public/") + newFileName;
 
@@ -183,7 +181,7 @@ export const updateUsers = catchAsync(
             },
             data: {
               paymentSlip: "Cash",
-              paymentStatus: "NOT_PAID_AND_CASH",
+              paymentStatus: "NOT_PAID",
             },
           })
           .then(() => {
